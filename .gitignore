@@ -1,0 +1,56 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment variables (NEVER COMMIT THESE!)
+.env
+.env.local
+.env.*.local
+**/.env
+**/server/.env
+**/client/.env
+
+# Uploads and temporary files
+server/uploads/*
+!server/uploads/.gitkeep
+
+# Build outputs
+client/dist/
+client/build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# Misc
+*.bak
+*.tmp
+
+# Auto-generated documentation / Metadata
+MIGRATION.md
+CLEANUP.md
+UI_REDESIGN.md
+ROUTER_FIX.md
+SMOOTHNESS.md
+IMAGE_COMPRESSION_FIX.md
+COMPRESSION_ENHANCEMENT.md
+*.tmp.md
+*.bak.md
