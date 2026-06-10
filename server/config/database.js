@@ -37,12 +37,13 @@ const testConnection = async () => {
 // Sync database (create tables if they don't exist)
 const syncDatabase = async () => {
     try {
-        await sequelize.sync({ alter: false }); // Use { force: true } to drop and recreate tables
+        await sequelize.sync({ alter: true }); // Automatically update table schema with new columns
         console.log('✓ Database synchronized');
     } catch (error) {
         console.error('Database sync error:', error);
     }
 };
+
 
 module.exports = {
     sequelize,
