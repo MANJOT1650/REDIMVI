@@ -25,6 +25,15 @@ export const login = (email, password) => {
   return api.post('/auth/login', { email, password });
 };
 
+export const verifyEmail = (token) => {
+  return api.get(`/auth/verify-email?token=${token}`);
+};
+
+export const resendVerification = (email) => {
+  return api.post('/auth/resend-verification', { email });
+};
+
+
 export const compressImage = (file, quality, targetSize = null) => {
   const formData = new FormData();
   formData.append('image', file);

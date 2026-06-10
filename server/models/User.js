@@ -34,6 +34,26 @@ const User = sequelize.define('User', {
     validate: {
       notEmpty: true
     }
+  },
+
+  // ── Email Verification Fields ──────────────────────────────────────
+  // Whether the user has confirmed their email address
+  isVerified: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false
+  },
+  // Hashed verification token (stored hashed so a DB leak doesn't expose valid links)
+  verificationToken: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    defaultValue: null
+  },
+  // Token expiry — link is only valid for 24 hours
+  verificationTokenExpiry: {
+    type: DataTypes.DATE,
+    allowNull: true,
+    defaultValue: null
   }
 }, {
   tableName: 'users',

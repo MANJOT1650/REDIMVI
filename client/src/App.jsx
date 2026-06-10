@@ -4,6 +4,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import ThemeToggle from './components/ThemeToggle';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import VerifyEmail from './components/VerifyEmail';
 import Dashboard from './components/Dashboard';
 import CompressImage from './components/CompressImage';
 import CompressVideo from './components/CompressVideo';
@@ -29,6 +30,8 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
+
           <Route
             path="/dashboard"
             element={
