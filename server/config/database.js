@@ -1,16 +1,19 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
+// Use SSL in production (Render), but not in local development
+const isProduction = process.env.NODE_ENV === 'production';
+
 // PostgreSQL connection
 const sequelize = new Sequelize(process.env.DATABASE_URL || process.env.POSTGRES_URI, {
     dialect: 'postgres',
-    dialectOptions: {
+    dialectOptions: isProduction ? {
         ssl: {
             require: true,
-            rejectUnauthorized: false // For hosted databases like Render
+            rejectUnauthorized: false // Required for Render's hosted PostgreSQL
         }
-    },
-    logging: process.env.NODE_ENV === 'development' ? console.log : false,
+    } : {},
+    logging: isProduction ? false : console.log,
     pool: {
         max: 5,
         min: 0,
