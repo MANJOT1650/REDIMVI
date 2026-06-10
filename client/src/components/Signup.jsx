@@ -47,7 +47,9 @@ const Signup = () => {
         setIsRegistered(true);
       }
     } catch (err) {
-      setError(err.response?.data?.error || 'Signup failed. Please try again.');
+      const errMsg = err.response?.data?.error || 'Signup failed. Please try again.';
+      const errDetails = err.response?.data?.details;
+      setError(errDetails ? `${errMsg}: ${errDetails}` : errMsg);
     } finally {
       setLoading(false);
     }
