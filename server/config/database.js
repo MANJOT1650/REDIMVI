@@ -5,7 +5,16 @@ require('dotenv').config();
 const isProduction = process.env.NODE_ENV === 'production';
 
 // PostgreSQL connection
-const sequelize = new Sequelize(process.env.DATABASE_URL || process.env.POSTGRES_URI, {
+const dbUrl = process.env.DATABASE_URL || process.env.POSTGRES_URI;
+
+if (!dbUrl) {
+    console.error('\n❌ FATAL ERROR: DATABASE_URL environment variable is missing.');
+    console.error('If you are on Render, please go to your Web Service -> Environment, and add your DATABASE_URL.\n');
+    // Exit the process cleanly to give a readable error in the logs, 
+    // or initialize with a dummy to prevent a hard crash on module load.
+}
+
+const sequelize = new Sequelize(dbUrl || 'postgres://localhost:5432/dummy', {
     dialect: 'postgres',
     dialectOptions: isProduction ? {
         ssl: {
