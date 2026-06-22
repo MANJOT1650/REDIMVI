@@ -13,9 +13,11 @@ services:
       - key: NODE_ENV
         value: production
 
-      # Manually supply your existing Render PostgreSQL Internal Database URL here
+      # Automatically set by the Render database defined below
       - key: DATABASE_URL
-        sync: false
+        fromDatabase:
+          name: redimvi-db
+          property: connectionString
 
       # ⚠ CHANGE THESE in Render's dashboard after first deploy:
       - key: JWT_SECRET
@@ -26,3 +28,11 @@ services:
         sync: false                  # You'll enter the value manually in Render
 
     healthCheckPath: /api/health
+
+  # ─── Database Service ────────────────────────────────────────────────────────
+databases:
+  - name: redimvi-db
+    databaseName: redimvi
+    user: redimvi_user
+    plan: free
+    region: oregon
